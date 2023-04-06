@@ -29,19 +29,30 @@ public class NameForm {
                     collapseButton.setText("Разъединить");
                 }
             } else if (collapseButton.getText().equals("Разъединить")) {
-                String[] fio = firstNameInput.getText().split(" +");
+                String[] fio = firstNameInput.getText().split("\\s+");
                 if (fio.length > 3) {
                     JOptionPane.showMessageDialog(mainPanel, "Полное имя не может быть больше трех слов");
                 } else if (fio.length < 2) {
                     JOptionPane.showMessageDialog(mainPanel, "Полное имя не может быть меньше двух слов");
+                }
+                if (fio.length == 2) {
+                    collapseButton.setText("Сжать");
+                    lastNameLabel.setVisible(true);
+                    surNameLabel.setVisible(true);
+                    lastNameInput.setVisible(true);
+                    lastNameInput.setText(fio[0]);
+                    surNameInput.setVisible(true);
+                    surNameInput.setText("");
+                    firstNameLabel.setText("Имя");
+                    firstNameInput.setText(fio[1]);
                 } else {
                     collapseButton.setText("Сжать");
                     lastNameLabel.setVisible(true);
                     surNameLabel.setVisible(true);
                     lastNameInput.setVisible(true);
-                    lastNameInput.setName(fio[0]);
+                    lastNameInput.setText(fio[0]);
                     surNameInput.setVisible(true);
-                    surNameInput.setName(fio[2]);
+                    surNameInput.setText(fio[2]);
                     firstNameLabel.setText("Имя");
                     firstNameInput.setText(fio[1]);
                 }
